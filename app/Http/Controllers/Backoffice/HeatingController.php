@@ -12,7 +12,7 @@ class HeatingController extends Controller
 {
     public function index(): View
     {
-        $heatings = Heating::paginate(3);
+        $heatings = Heating::paginate(10);
 
         return view('backoffice.heating.index', ['heatings' => $heatings]);
     }

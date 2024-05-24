@@ -13,6 +13,7 @@
         @endif
         <div class="row mt-3">
             @foreach ($properties as $property)
+            
             <div class="col-md-3">
                 <div class="card" style="width: 18rem;">
                     <img src="..." class="card-img-top" alt="...">

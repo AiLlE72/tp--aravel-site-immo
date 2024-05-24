@@ -38,8 +38,8 @@ Route::post('/backoffice/heating/delete/{heating}', [HeatingController::class,'d
 */
 Route::get('/backoffice/specificities',[SpecificitiesController::class, 'index'])->name("specificities-index");
 Route::post('/backoffice/specificities/create',[SpecificitiesController::class, 'create']);
-Route::post('/backoffice/specificities/update{specificities}',[SpecificitiesController::class,'update']);
-Route::post('/backoffice/specificities/delete{specificities}',[SpecificitiesController::class,'delete']);
+Route::post('/backoffice/specificities/update/{specificities}',[SpecificitiesController::class,'update']);
+Route::post('/backoffice/specificities/delete/{specificities}',[SpecificitiesController::class,'delete']);
 
 /*
 |--------------------------------------------------------------------------
