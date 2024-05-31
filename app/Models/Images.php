@@ -9,7 +9,7 @@ class Images extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'image-url'
+        'imageUrl'
     ];
 
     public function property(){

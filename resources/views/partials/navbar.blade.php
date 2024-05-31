@@ -25,8 +25,8 @@
                         Administration
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('properties-create') }}">Création de bien</a></li>
-                        <li><a class="dropdown-item" href="#">Modification de bien</a></li>
+                        <li><a class="dropdown-item" href="{{ route('properties-form') }}">Création de bien</a></li>
+                        <li><a class="dropdown-item" href="{{ route('backoffice-properties-index') }}">Modification de bien</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

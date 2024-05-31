@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->id();
-            $table->string('imageUrl');
-            $table->timestamps();
+        Schema::table('properties', function (Blueprint $table) {
+            $table->renameColumn('sleeping-rooms', 'sleeping_rooms');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::table('properties', function (Blueprint $table) {
+            $table->renameColumn('sleeping_rooms', 'sleeping-rooms');
+        });
     }
 };

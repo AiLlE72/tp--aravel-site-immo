@@ -15,7 +15,7 @@ class Properties extends Model
         'aera',
         'floors',
         'rooms',
-        'sleeping-rooms'
+        'sleeping_rooms'
     ];
 
     public function specificities(){

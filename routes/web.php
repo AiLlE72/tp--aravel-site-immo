@@ -47,6 +47,10 @@ Route::post('/backoffice/specificities/delete/{specificities}',[SpecificitiesCon
 |--------------------------------------------------------------------------
 */
 Route::get('/property', [PropertyController::class, 'index'])->name("properties-index");
-Route::get('/backoffice/property/create', [PropertyController::class, 'create'])->name('properties-create');
-Route::post('/backoffice/property/form', [PropertyController::class, 'store']);
+Route::get('/backoffice/property', [PropertyController::class, 'list'])->name("backoffice-properties-index");
+Route::get('/backoffice/property/create', [PropertyController::class, 'form'])->name('properties-form');
+Route::post('/backoffice/property/create', [PropertyController::class, 'create']);
+Route::get('/backoffice/property/update/{property}', [PropertyController::class, 'edit'])->name('properties-edit');
+Route::put('/backoffice/property/update/{property}', [PropertyController::class, 'update']);
+Route::post('/backoffice/property/delete/{property}', [PropertyController::class, 'delete']);
 

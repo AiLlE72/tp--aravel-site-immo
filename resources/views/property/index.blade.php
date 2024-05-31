@@ -13,10 +13,15 @@
         @endif
         <div class="row mt-3">
             @foreach ($properties as $property)
-            
+
             <div class="col-md-3">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    @foreach ($property->images as $index => $image)
+                    @if ($loop->first)
+                        <img src="http://localhost:8000/storage/{{ $image->imageUrl }}" class="card-img-top"
+                            alt="Photo d'illustration">
+                    @endif
+                @endforeach
                     <div class="card-body">
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                             card's content.</p>
