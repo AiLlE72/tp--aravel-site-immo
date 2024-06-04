@@ -21,6 +21,8 @@
                             <th scope="col">nombre d'étage</th>
                             <th scope="col">Nombre de pièce</th>
                             <th scope="col">Nombre de chambre</th>
+                            <th scope="col">Specificités</th>
+                            <th scope="col">Type de chauffage</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
@@ -34,10 +36,13 @@
                                 <td>{{ $property->aera }}</td>
                                 <td>{{ $property->floors }}</td>
                                 <td>{{ $property->rooms }}</td>
-                                <td>{{ $property->{'sleeping-rooms'} }}</td>
-                                <td><a href="{{ route('properties-edit', [$property->id]) }}" type="button" class="btn btn-secondary">
+                                <td>{{ $property->sleeping_rooms }}</td>
+                                <td>{{ $property->sleeping_rooms }}</td>
+                                <td>{{ $property->sleeping_rooms }}</td>
+                                <td><a href="{{ route('properties-edit', [$property->id]) }}" type="button"
+                                        class="btn btn-secondary">
                                         Modifier
-                                </a></td>
+                                    </a></td>
                                 <td><button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal{{ $property->id }}">
                                         Supprimer
@@ -84,7 +89,8 @@
                                 aria-labelledby="deleteModal{{ $property->id }}Label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form action="{{ url('/backoffice/property/delete', ['property' => $property->id]) }}"
+                                        <form
+                                            action="{{ url('/backoffice/property/delete', ['property' => $property->id]) }}"
                                             method="post">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5" id="deleteModal{{ $property->id }}Label">

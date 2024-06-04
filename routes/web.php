@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authController;
 use App\Http\Controllers\Backoffice\HeatingController;
 use App\Http\Controllers\Backoffice\PropertyController;
 use App\Http\Controllers\Backoffice\SpecificitiesController;
@@ -8,16 +9,20 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes for home
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
 Route::get('/',[ HomeController::class, 'home'])->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes for user
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/register',[ authController::class, 'register'])->name('register');
+Route::post('/register', [ authController::class,  'create']);
 
 
 /*

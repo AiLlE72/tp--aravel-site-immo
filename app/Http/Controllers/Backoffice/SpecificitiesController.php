@@ -12,7 +12,7 @@ class SpecificitiesController extends Controller
 {
     public function index(): View
     {
-        $specificities = Specificities::paginate(3);
+        $specificities = Specificities::paginate(10);
         return view('backoffice.specificities.index', ['specificities' => $specificities]);
     }
     public function create(FormAddSpecificities $request)

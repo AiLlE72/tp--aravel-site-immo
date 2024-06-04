@@ -75,6 +75,9 @@ class PropertyController extends Controller
         $property->update($request->validated());
         $property->specificities()->sync($request->validated('specificities'));
         $property->heating()->sync($request->validated('heating'));
+
+        
+
         return redirect()->route('properties-index')->with('success', "L'article a bien été modifié");
     }
 
