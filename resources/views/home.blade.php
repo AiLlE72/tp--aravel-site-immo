@@ -20,8 +20,11 @@
                             @endif
                         @endforeach
                         <div class="card-body">
-                            <h5 class="card-title">{{ $property->title }}</h5>
+                            <a href="{{ route('singleProperty', ['property' => $property->id]) }}">
+                                <h4 class="card-title">{{ $property->title }}</h4>
+                            </a>
                             <p class="card-text text-truncate">{{ $property->description }}</p>
+                            <h5>{{ $property->price }} €</h5>
                         </div>
                     </div>
                 </div>

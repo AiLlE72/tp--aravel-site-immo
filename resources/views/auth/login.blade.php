@@ -12,12 +12,8 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
           <div class="card-body p-5">
             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-            <form action="{{url('/register')}}" method="POST">
+            <form action="{{url('/login')}}" method="POST">
                 @csrf
-              <div data-mdb-input-init class="form-outline mb-4">
-                <input type="text" id="form3Example1cg" class="form-control form-control-lg" name="name"/>
-                <label class="form-label" for="form3Example1cg">votre nom</label>
-              </div>
 
               <div data-mdb-input-init class="form-outline mb-4">
                 <input type="email" id="form3Example3cg" class="form-control form-control-lg" name="email"/>
@@ -29,20 +25,14 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
                 <label class="form-label" for="form3Example4cg">Password</label>
               </div>
 
-              <div data-mdb-input-init class="form-outline mb-4">
-                <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="confPassword"/>
-                <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-              </div>
-
-
 
               <div class="d-flex justify-content-center">
                 <button  type="submit" data-mdb-button-init
-                  data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                  data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Se connecter</button>
               </div>
 
-              <p class="text-center text-muted mt-5 mb-0">Vous avez déjà un compte?  <a href="{{route('login')}}"
-                  class="fw-bold text-body"><u>Se connecter ici</u></a></p>
+              <p class="text-center text-muted mt-5 mb-0">Pas encore de compte ? <a href="{{route('register')}}"
+                  class="fw-bold text-body"><u>Créer un compte</u></a></p>
 
             </form>
 

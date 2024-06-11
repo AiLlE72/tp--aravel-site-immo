@@ -23,6 +23,9 @@ Route::get('/',[ HomeController::class, 'home'])->name('home');
 
 Route::get('/register',[ authController::class, 'register'])->name('register');
 Route::post('/register', [ authController::class,  'create']);
+Route::get('/login', [authController::class, 'login'])->name('login');
+Route::post('/login',[authController::class, 'doLogin']);
+Route::post('/logout', [authController::class, 'logout'])->name('auth.logout');
 
 
 /*
@@ -52,6 +55,7 @@ Route::post('/backoffice/specificities/delete/{specificities}',[SpecificitiesCon
 |--------------------------------------------------------------------------
 */
 Route::get('/property', [PropertyController::class, 'index'])->name("properties-index");
+Route::get('/property/{property}', [PropertyController::class, 'single'])->name('singleProperty');
 Route::get('/backoffice/property', [PropertyController::class, 'list'])->name("backoffice-properties-index");
 Route::get('/backoffice/property/create', [PropertyController::class, 'form'])->name('properties-form');
 Route::post('/backoffice/property/create', [PropertyController::class, 'create']);

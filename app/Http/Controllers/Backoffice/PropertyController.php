@@ -10,7 +10,6 @@ use App\Models\Properties;
 use App\Models\Specificities;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
-use PhpParser\Builder\Property;
 
 class PropertyController extends Controller
 {
@@ -21,6 +20,11 @@ class PropertyController extends Controller
         return view('property.index', ['properties' => $properties]);
     }
 
+    public function single(Properties $property)
+    {
+        $property = Properties::with('specificities', 'heating', 'images')->get();
+        return view('property.single', ['property' => $property]);
+    }
 
     public function list(): View
     {
@@ -39,15 +43,16 @@ class PropertyController extends Controller
     }
 
 
-    private function saveImage( Properties $property,  $image){
+    private function saveImage(Properties $property,  $image)
+    {
         $data['imageUrl'] = $image->store('property', 'public');
         $store = Images::create($data);
         $property->images()->attach($store);
     }
 
 
-    public function create(FormAddProperty $request )
-        {
+    public function create(FormAddProperty $request)
+    {
         $property = Properties::create($request->validated());
         $property->specificities()->sync($request->validated('specificities'));
         $property->heating()->sync($request->validated('heating'));
@@ -67,7 +72,7 @@ class PropertyController extends Controller
         $heatings = Heating::all();
         $specificities = Specificities::all();
 
-        return view('backoffice.property.form',compact('heatings', 'specificities', 'property') );
+        return view('backoffice.property.form', compact('heatings', 'specificities', 'property'));
     }
 
     public function update(Properties $property, FormAddProperty $request)
@@ -76,13 +81,14 @@ class PropertyController extends Controller
         $property->specificities()->sync($request->validated('specificities'));
         $property->heating()->sync($request->validated('heating'));
 
-        
+
 
         return redirect()->route('properties-index')->with('success', "L'article a bien été modifié");
     }
 
-    public function delete(Properties $property){
-        $images =$property->images()->get();
+    public function delete(Properties $property)
+    {
+        $images = $property->images()->get();
         foreach ($images as $image) {
             $image->delete();
             Storage::disk('public')->delete($image->imageUrl);
