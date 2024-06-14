@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Backoffice;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FormAddProperty;
+use App\Http\Requests\formFilter;
 use App\Models\Heating;
 use App\Models\Images;
 use App\Models\Properties;
 use App\Models\Specificities;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
+use Request;
 
 class PropertyController extends Controller
 {
@@ -96,5 +98,13 @@ class PropertyController extends Controller
         $property->delete();
 
         return to_route("backoffice-properties-index");
+    }
+
+    public function search(formFilter $request){
+
+        dd($request->validated());
+
+        $properties = Properties::with('specificities', 'heating', 'images')->where('price', ">=", $request->validated('minPrice') )->paginate(4);
+         return view('property.index', ['properties' => $properties]);
     }
 }
