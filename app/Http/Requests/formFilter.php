@@ -22,10 +22,10 @@ class formFilter extends FormRequest
     public function rules(): array
     {
         return [
-            "minAera"=>"numeric",
-            "rooms"=>"numeric",
-            "minPrice"=>"numeric",
-            "keyword"=>"string"
+            'minAera' => 'nullable|numeric|min:0',
+            'rooms' => 'nullable|numeric|min:0',
+            'maxPrice' => 'nullable|numeric|min:0',
+            'keyword' => 'nullable|string|max:255'
         ];
     }
 }

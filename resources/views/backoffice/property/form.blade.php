@@ -28,7 +28,7 @@
                     <div class="col-md-8">
                         <label for="Title" class="form-label">Titre</label>
                         <input type="text" class="form-control" id="Title" name="title"
-                            value="{{ old('title', $property->title) }}">
+                            value="{{ old('title', isset($property) ? $property->title : '') }}">
                         @error('title')
                             <p class="fs-6 text-danger mt-1">{{ $message }}</p>
                         @enderror
@@ -36,14 +36,14 @@
                     <div class="col-md-4">
                         <label for="aera" class="form-label">Superficie</label>
                         <input type="number" class="form-control" id="aera" name="aera"
-                            value="{{ old('aera', $property->aera) }}">
+                            value="{{ old('title', isset($property) ? $property->aera : '') }}">
                         @error('aera')
                             <p class="fs-6 text-danger mt-1">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="col-12">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" rows="3" name="description">{{ old('description', $property->description) }}</textarea>
+                        <textarea class="form-control" id="description" rows="3" name="description">{{ old('title', isset($property) ? $property->description : '') }}</textarea>
                         @error('description')
                             <p class="fs-6 text-danger mt-1">{{ $message }}</p>
                         @enderror
@@ -123,7 +123,7 @@
                         <select class="form-select" id="specificities" aria-label="Sélectionner les spécificités"
                             name="specificities[]" multiple>
                             @foreach ($specificities as $specificity)
-                                <option value="{{ $specificity->id }}" @if (in_array($specificity->id, old('specificities', $property->specificities->pluck('id')->toArray() ?? []))) selected @endif>
+                                <option value="{{ $specificity->id }}" @if (in_array($specificity->id, old('specificities', isset($property) ? $property->specificities->pluck('id')->toArray() : []))) selected @endif>
                                     {{ $specificity->name }}
                                 </option>
                             @endforeach
@@ -135,8 +135,11 @@
                         <select class="form-select" id="heating" aria-label="Sélectionner le mode de chauffages"
                             name="heating">
                             <option value="">Sélectionner le mode de chauffages</option>
+
                             @foreach ($heatings as $heating)
-                                <option value="{{ $heating->id }}" @selected($heatingValue[0]->id == $heating->id)>{{ $heating->type }}
+                                <option value="{{ $heating->id }}"
+                                     {{-- @selected($heatingValue[0]->id == $heating->id) --}}
+                                     >{{ $heating->type }}
                                 </option>
                             @endforeach
                         </select>

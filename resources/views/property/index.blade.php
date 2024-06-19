@@ -15,26 +15,26 @@
                 <div class="col-md-3">
                     <div class="input-group mb-3">
                         <input type="number" step="10" class="form-control" placeholder="Superficie minimum"
-                            aria-label="Recipient's username" aria-describedby="button-addon2" name="minAera">
+                            aria-label="Superficie minimum" aria-describedby="button-addon2" name="minAera">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group mb-3">
                         <input type="number" class="form-control" placeholder="Nombre de pièce"
-                            aria-label="Recipient's username" aria-describedby="button-addon2" name="rooms">
+                            aria-label="Nombre de pièce" aria-describedby="button-addon2" name="rooms">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group mb-3">
-                        <input type="number" step="1000" class="form-control" placeholder="Budget mini"
-                            aria-label="Recipient's username" aria-describedby="button-addon2" name="minPrice">
+                        <input type="number" step="1000" class="form-control" placeholder="Budget maxi"
+                            aria-label="Budget maxi" aria-describedby="button-addon2" name="maxPrice">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Mot clé" aria-label="Recipient's username"
+                        <input type="text" class="form-control" placeholder="Mot clé" aria-label="Mot clé"
                             aria-describedby="button-addon2" name="keyword">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Recherche</button>
+                        <button class="btn btn-outline-secondary" type="submit" >Recherche</button>
                     </div>
                 </div>
             </form>
@@ -59,9 +59,11 @@
                             @endif
                         @endforeach
                         <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the
-                                card's content.</p>
+                            <a href="{{ route('singleProperty', ['property' => $property->id]) }}">
+                                <h4 class="card-title">{{ $property->title }}</h4>
+                            </a>
+                            <p class="card-text text-truncate">{{ $property->description }}</p>
+                            <h5>{{ $property->price }} €</h5>
                         </div>
                     </div>
                 </div>

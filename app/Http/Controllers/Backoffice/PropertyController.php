@@ -11,7 +11,6 @@ use App\Models\Properties;
 use App\Models\Specificities;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
-use Request;
 
 class PropertyController extends Controller
 {
@@ -102,9 +101,28 @@ class PropertyController extends Controller
 
     public function search(formFilter $request){
 
-        dd($request->validated());
+        $validated = $request->validated();
 
-        $properties = Properties::with('specificities', 'heating', 'images')->where('price', ">=", $request->validated('minPrice') )->paginate(4);
-         return view('property.index', ['properties' => $properties]);
+        // dd(gettype($validated['maxPrice'])); // This will dump the validated data and stop execution
+
+        $maxPrice = isset($validated['maxPrice']) ? (float) $validated['maxPrice'] : null;
+        $minAera = isset($validated['minAera']) ? (float) $validated['minAera'] : null;
+
+        $properties = Properties::with('specificities', 'heating', 'images')
+            ->when(isset($maxPrice), function ($query) use ($maxPrice) {
+                return $query->where('price', '<=', $maxPrice);
+            })
+            ->when(isset($validated['minAera']), function ($query) use ($minAera) {
+                return $query->where('aera', '>=', $minAera);
+            })
+            ->when(isset($validated['rooms']), function ($query) use ($validated) {
+                return $query->where('rooms', '>=', $validated['rooms']);
+            })
+            ->when(isset($validated['keyword']), function ($query) use ($validated) {
+                return $query->where('description', 'like', '%' . $validated['keyword'] . '%');
+            })
+            ->paginate(5);
+
+        return view('property.index', ['properties' => $properties]);
     }
 }
